@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const itemsCtrl = require('../../controllers/items');
+const showItemsCtrl = require('../../controllers/showItems');
 
-router.get('/', itemsCtrl.itemCount);
+router.get('/', showItemsCtrl.getItems);
 // Public Route
-router.post('/lendorborrow', itemsCtrl.lendorborrow);
+router.post('/returned', showItemsCtrl.returned);
 
 /*---------- Protected Routes ----------*/
 // Process the token for only the routes below

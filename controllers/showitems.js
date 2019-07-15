@@ -1,16 +1,19 @@
 var Item = require('../models/item');
 
 module.exports = {
-  lendorborrow,
+  returned,
   create,
   itemCount
 };
 
-async function lendorborrow(req, res) {
-  const item = new Item(req.body);
+async function returned(req, res) {
   console.log(req.body);
   try {
-    await item.save();
+    // how to get item ID out of req and remove from database?
+    //let id = req.body._id;
+    let item = req.body; // ?
+    await item.remove(); // built in mongo command to remove item?
+
     res.json({ "ok": "ok" });
   } catch (err) {
     // Probably a duplicate email
@@ -29,12 +32,9 @@ async function create(req, res) {
   }
 }
 
-async function itemCount(req, res) {
-//   const items = await Item.find({})
-    // .sort({numGuesses: 1, seconds: 1})
-    // // Default to a limit of 20 high scores
-    // // if not specified in a query string
-    // .limit(req.query.limit || 20);
-  res.json({itemName: 'Pencil'});
-}
 
+
+async function getItems(req, res) {
+    const items = await Item.findAll();
+    res.send(items);
+}

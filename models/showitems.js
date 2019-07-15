@@ -27,6 +27,4 @@ itemSchema.pre('save', function(next) {
   next();
 });
 
-
-
 module.exports = mongoose.model('Item', itemSchema);
