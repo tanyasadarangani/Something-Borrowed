@@ -7,8 +7,10 @@ module.exports = {
 };
 
 async function lendorborrow(req, res) {
+  req.body.user = req.user;
+  console.log("req.body: ",req.body);
   const item = new Item(req.body);
-  console.log(req.body);
+  console.log("req.user: ", req.user);
   try {
     await item.save();
     return res.json({ "ok": "ok" });

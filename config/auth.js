@@ -4,7 +4,7 @@ const SECRET = process.env.SECRET;
 module.exports = function(req, res, next) {
   // Check for the token being sent in three different ways
   console.log("checking the token in auth: " +req.body.token)
-  let token = req.body.token || req.get('Authorization') || req.query.token;
+  let token = req.get('Authorization')  || req.body.token  || req.query.token;
   if (token) {
     // Remove the 'Bearer ' if it was included in the token header
     token = token.replace('Bearer ', '');

@@ -1,3 +1,4 @@
+import tokenService from "./tokenService";
 
 
 const BASE_URL = '/api/items/';
@@ -45,15 +46,35 @@ function getItemList() {
     method: 'GET',
     headers: new Headers({
       "Content-Type": "application/json",
-      "Authorization": "Bearer " + sessionStorage.getItem("token")
+      "Authorization": "Bearer " + tokenService.getToken()
     })
-  }).then(res => {
-    console.log(res);
-    return res.json()
-  }).catch(err => console.log(err));
+  }).then(res => res.json()).catch(err => console.log(err));
+}
+
+function deleteItem(id) {
+  return fetch('/api/items/' + id, {
+    method: 'DELETE',
+    headers: new Headers({
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + tokenService.getToken()
+    })
+  }).then(res => res.json()).catch(err => console.log(err));
+}
+
+function editItem(item) {
+  return fetch('/api/items/' + item._id, {
+    method: 'PUT',
+    headers: new Headers({
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + tokenService.getToken()
+    }),
+    body: JSON.stringify(item)
+  }).then(res => res.json()).catch(err => console.log(err));
 }
 
 export default {
   returned,
-  getItemList
+  getItemList,
+  deleteItem,
+  editItem
 };

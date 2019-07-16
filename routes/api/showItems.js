@@ -11,9 +11,9 @@ router.post('/returned', showItemsCtrl.returned);
 // Process the token for only the routes below
 // router.use();
 // router.post('/', checkAuth, scoresCtrl.create);
-router.get("/returnUserItems", auth, (req,res) => {
-    console.log(req.user);
-    res.send(req.user);
+// router.get("/returnUserItems", checkAuth, (req,res) => {
+//     console.log(req.user);
+//     res.send(req.user);
 })
 
 
