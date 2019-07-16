@@ -43,6 +43,7 @@ class App extends Component {
 
   handleSignupOrLogin = () => {
     this.setState({user: userService.getUser()});
+    console.log(this.state.user);
   }
 
   handleLendOrBorrow = () => {

@@ -11,7 +11,7 @@ async function lendorborrow(req, res) {
   console.log(req.body);
   try {
     await item.save();
-    res.json({ "ok": "ok" });
+    return res.json({ "ok": "ok" });
   } catch (err) {
     // Probably a duplicate email
     res.status(400).json(err);

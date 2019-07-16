@@ -46,29 +46,26 @@ class ShowItemsForm extends Component {
     }
   }
 
+  //helper method to update item
+  editItem = () => {
+
+  }
+
+  //this deletes the items
+  delete = () => {
+
+  }
 
   render() {
     return (
       <div>
-        <header className="header-footer">Lend or Borrow</header>
-        <form className="form-horizontal" onSubmit={this.handleSubmit} >
-          {/* <div className="form-group">
-            <div className="col-sm-12">
-              <input type="text" className="form-control" placeholder="User" value={userService.getUser()._id} name="user" readOnly disabled />
-            </div>
-          </div> */}
-
-          
-          {/* <div className="form-group">
-            <div className="col-sm-12">
-              {this.state.lent_items}
-              <button className="btn btn-default" name="returned_what" value={this.state.lent_items[0]} >Returned</button>&nbsp;&nbsp;
-            </div>
-          </div> */}
-        </form>
+        <p>{this.props.name}</p>
+        <p>{this.props.person}</p>
+        <button onClick={this.delete}>delete</button>
+        <button onClick={this.editItem}>edit item</button>
       </div>
     );
   }
-}
+} 
 
 export default ShowItemsForm;

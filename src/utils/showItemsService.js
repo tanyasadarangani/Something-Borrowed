@@ -22,5 +22,38 @@ function returned(item) {
   //.then((token) => token.token);
 }
 
+// function getItemList() {
+//   return axios.get('/api/items/returnUserItems',{token:sessionStorage.getItem("token")})
+//         .then(result => {
+//           return result.json
+//       //       <ShowItemsForm {...this.props} 
+//       //     name={item.name}
+//       //     person={item.person}
+//       //     color={item.color}
+//       //     size={item.size}
+//       //     brand={item.brand}
+//       //     timeFrame={item.timeFrame}
+//       //     updateMessage={this.updateMessage} 
+//       // />
+//           }) 
+//         })
+//         .catch(err => console.log(err));
+//       }
 
-export default returned;
+function getItemList() {
+  return fetch('/api/items/returnUserItems', {
+    method: 'GET',
+    headers: new Headers({
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + sessionStorage.getItem("token")
+    })
+  }).then(res => {
+    console.log(res);
+    return res.json()
+  }).catch(err => console.log(err));
+}
+
+export default {
+  returned,
+  getItemList
+};

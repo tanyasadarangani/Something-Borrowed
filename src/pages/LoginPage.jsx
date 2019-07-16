@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './LoginPage.css';
 import userService from '../utils/userService';
+import axios from 'axios';
 
 class LoginPage extends Component {
   
@@ -19,16 +20,28 @@ class LoginPage extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await userService.login(this.state);
-      // Let <App> know a user has signed up!
-      this.props.handleSignupOrLogin();
-      // Successfully signed up - show GamePage
-      this.props.history.push('/');
-    } catch (err) {
-      // Use a modal or toast in your apps instead of alert
-      alert('Invalid Credentials!');
-    }
+    axios.post("http://localhost:3001/api/users/login",this.state)
+      .then(res => {
+        console.log(res.data.token);
+        //saving the token in a session storage
+        sessionStorage.setItem("token",res.data.token)
+        //once the key is saved move on the the next page
+        this.props.history.push('/');
+      })
+      .catch(err => console.log(err))
+
+    // try {
+    //   await userService.login(this.state);
+    //   // Let <App> know a user has signed up!
+    //   this.props.handleSignupOrLogin();
+    //   //save the token here
+
+    //   // Successfully signed up - show GamePage
+    // 
+    // } catch (err) {
+    //   // Use a modal or toast in your apps instead of alert
+    //   alert('Invalid Credentials!');
+    // }
   }
 
   render() {

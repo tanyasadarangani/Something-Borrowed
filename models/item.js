@@ -9,7 +9,10 @@ const Schema = mongoose.Schema;
 // (color size brand): as decribed
 // timeframe: number of days it's meant to be leant/borrowed for
 const itemSchema = new Schema({
-  user: String,
+  user: {
+    type: Schema.Types.ObjectId, 
+    ref: 'User',
+  },
   person: String,
   lentout: Boolean, 
   name: String,
