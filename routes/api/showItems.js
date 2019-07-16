@@ -14,7 +14,6 @@ router.post('/returned', showItemsCtrl.returned);
 // router.get("/returnUserItems", checkAuth, (req,res) => {
 //     console.log(req.user);
 //     res.send(req.user);
-})
 
 
 /*----- Helper Functions -----*/

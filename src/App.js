@@ -30,11 +30,13 @@ import SignupPage from './pages/SignupPage';
 import InputPage from './pages/InputPage';
 import ItemsPage from './pages/ItemsPage';
 import userService from './utils/userService';
+import Header from "../src/components/Header/Header";
+import showItemsService from './utils/showItemsService';
 
 
 
 class App extends Component {
-  state = {  }
+  state = { }
 
   handleLogout = () => {
     userService.logout();
@@ -46,14 +48,13 @@ class App extends Component {
     console.log(this.state.user);
   }
 
-  handleLendOrBorrow = () => {
-    this.setState()
-  }
+  
  
   render() { 
     return (
       <div className="App">
         <header className="App-header">
+          <Header/>
           <h1>Something Borrowed</h1>
           <Switch>
             <Route exact path='/signup' render={({history}) =>
@@ -78,6 +79,7 @@ class App extends Component {
             <ItemsPage
             history={history}
             handleShowItems={this.handleShowItems}
+            handleLendOrBorrow={this.handleLendOrBorrow}
             />
             } />
           </Switch>

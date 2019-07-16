@@ -20,7 +20,7 @@ class ItemPage extends Component {
       list: []
     };
   }
-
+  //reference for updating state 
   async componentWillMount() {
     const itemList = await showItemsService.getItemList();
     if (itemList) {
@@ -37,35 +37,31 @@ class ItemPage extends Component {
     console.log(e.target.value);
   };
 
+  handleLendOrBorrow = async () => {
+    const items = await showItemsService.getItemList();
+    this.setState({ list: items });
+  }
+
   sendData = (e) => {
     e.preventDefault();
-    return fetch('/api/items/lendorborrow', {
+    fetch('/api/items/lendorborrow', {
       method: 'POST',
       headers: new Headers ({
       "Content-Type": "application/json",
       "Authorization": "Bearer " + tokenService.getToken()
       }),
       body: JSON.stringify(this.state)
-    }).then(res => res.json()).catch(err => console.log(err));
+    }).then(res => {
+      return res.json();
+    }).catch(err => console.log(err));
 
-
-
-    // axios
-    //   .post("/api/items/lendorborrow", this.state)
-    //   .then(response => console.log(response.data))
-    //   .catch(err => console.log(err));
     // const { name, person, color, size, brand, timeFrame } = this.state;
+    
+    //populates to the list
     // this.state.list.push({ name, person, color, size, brand, timeFrame });
 
     //Clear all the data from the input
-    this.setState({
-      name: " ",
-      person: " ",
-      color: " ",
-      size: " ",
-      brand: " ",
-      timeFrame: " "
-    });
+    this.handleLendOrBorrow();
   };
 
   render() {
@@ -139,6 +135,7 @@ class ItemPage extends Component {
               updateMessage={this.updateMessage}
               id={object._id}
               object={object}
+              handleLendOrBorrow={this.handleLendOrBorrow}
             />
           );
         })}
