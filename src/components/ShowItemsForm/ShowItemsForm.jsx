@@ -86,8 +86,7 @@ class ShowItemsForm extends Component {
         "Authorization": "Bearer " + tokenService.getToken()
       })
     }).then(res => {
-      this.setState({delete: !this.state.delete});
-      return this.props.handleLendOrBorrow(); 
+      return this.setState({delete: !this.state.delete});
     }).
     catch(err => console.log(err));
     
@@ -103,8 +102,8 @@ class ShowItemsForm extends Component {
           <div>
             <p>{this.state.name}</p>
             <p>{this.state.person}</p>
-            <button onClick={this.delete}>delete</button>
-            <button onClick={this.editItem}>edit item</button>
+            <button className="button" onClick={this.delete}>delete</button>
+            <button className="button" onClick={this.editItem}>edit item</button>
           </div>
        
         :

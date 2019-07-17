@@ -80,6 +80,7 @@ class App extends Component {
             history={history}
             handleShowItems={this.handleShowItems}
             handleLendOrBorrow={this.handleLendOrBorrow}
+            user={this.state.user}
             />
             } />
           </Switch>

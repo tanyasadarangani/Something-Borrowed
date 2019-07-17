@@ -77,8 +77,10 @@ class ItemPage extends Component {
             brand: String,
             timeframe: Number,
         */}
+        {this.props.user ? <div>
         <input
           type="input"
+          className="input"
           onChange={this.inputHelper}
           value={this.state.name}
           name="name"
@@ -86,6 +88,7 @@ class ItemPage extends Component {
         />
         <input
           type="input"
+          className="input"
           onChange={this.inputHelper}
           value={this.state.person}
           name="person"
@@ -93,6 +96,7 @@ class ItemPage extends Component {
         />
         <input
           type="input"
+          className="input"
           onChange={this.inputHelper}
           value={this.state.color}
           name="color"
@@ -100,6 +104,7 @@ class ItemPage extends Component {
         />
         <input
           type="input"
+          className="input"
           onChange={this.inputHelper}
           value={this.state.size}
           name="size"
@@ -107,6 +112,7 @@ class ItemPage extends Component {
         />
         <input
           type="input"
+          className="input"
           onChange={this.inputHelper}
           value={this.state.brand}
           name="brand"
@@ -114,12 +120,14 @@ class ItemPage extends Component {
         />
         <input
           type="input"
+          className="input"
           onChange={this.inputHelper}
           value={this.state.timeFrame}
           name="timeFrame"
           placeholder="Time Frame"
         />
-        <button onClick={this.sendData}> Send Item </button>
+      <button className="button" onClick={this.sendData}> Send Item </button>
+      </div> : null }
 
         {this.state.list.map((object, key) => {
           console.log(object);
